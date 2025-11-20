@@ -1,0 +1,4 @@
+Student[ID, name, birthday, program, year]
+Hobby[Type, description, HobbyID, studentID, hobbyName]
+Pets[petID, petName, petType, studentID, petAge]
+Course[courseID, courseName, credits, studentID, semester]
