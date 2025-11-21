@@ -16,3 +16,4 @@ namespace FinalProject_2258.Data
         public DbSet<Course> Courses { get; set; }
     }
 }
+
