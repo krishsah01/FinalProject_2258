@@ -17,18 +17,15 @@ namespace FinalProject_2258.Controllers
             _context = context;
         }
 
-        // GET ALL
+        // GET: api/Hobby?id=1
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<IEnumerable<Hobby>>> GetHobbies(int? id)
         {
-            var hobbies = await _context.Hobbies.ToListAsync();
-            return Ok(hobbies);
-        }
+            if (id == null || id == 0)
+            {
+                return await _context.Hobbies.Take(5).ToListAsync();
+            }
 
-        // GET BY ID
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
             var hobby = await _context.Hobbies.FindAsync(id);
 
             if (hobby == null)
@@ -43,14 +40,14 @@ namespace FinalProject_2258.Controllers
         {
             _context.Hobbies.Add(hobby);
             await _context.SaveChangesAsync();
-            return Ok(hobby);
+            return CreatedAtAction(nameof(GetHobbies), new { id = hobby.Id }, hobby);
         }
 
         // PUT (Update)
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, Hobby hobby)
         {
-            if (id != hobby.HobbyId)
+            if (id != hobby.Id)
                 return BadRequest("ID mismatch");
 
             _context.Entry(hobby).State = EntityState.Modified;
