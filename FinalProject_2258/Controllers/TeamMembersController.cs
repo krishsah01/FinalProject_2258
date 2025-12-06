@@ -46,7 +46,7 @@ namespace FinalProject_2258.Controllers
             _context.TeamMembers.Add(member);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetTeamMembers), new { id = member.TeamMemberId }, member);
+            return CreatedAtAction(nameof(GetTeamMembers), new { id = member.Id }, member);
         }
 
         // ------------------------------------------------------------
@@ -56,7 +56,7 @@ namespace FinalProject_2258.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTeamMember(int id, TeamMember member)
         {
-            if (id != member.TeamMemberId)
+            if (id != member.Id)
             {
                 return BadRequest("ID mismatch");
             }
@@ -69,7 +69,7 @@ namespace FinalProject_2258.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.TeamMembers.Any(m => m.TeamMemberId == id))
+                if (!_context.TeamMembers.Any(m => m.Id == id))
                     return NotFound();
                 else
                     throw;
