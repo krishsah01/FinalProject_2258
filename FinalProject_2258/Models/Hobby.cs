@@ -1,14 +1,22 @@
-namespace FinalProject_2258.Models
+using System.ComponentModel.DataAnnotations;
+
+namespace FinalProject_2258.Data
 {
     public class Hobby
     {
-        public int HobbyId { get; set; }        // Primary Key
+        [Key]
+        public int Id { get; set; }
+        
+        [Required]
+        [MaxLength(100)]
+        public string Name { get; set; } = string.Empty;
+        
+        [MaxLength(500)]
+        public string? Description { get; set; }
 
-        public string HobbyName { get; set; }   // "Playing Basketball"
-        public string Type { get; set; }        // "Physical", "Art", "Music"
-        public string Description { get; set; } // Extra detail
+        [MaxLength(100)]
+        public string? Category { get; set; }
 
-        public int StudentId { get; set; }      // Reference (not foreign key required)
-        public int HoursPerWeek { get; set; }   // Extra column to reach 5+
+        public decimal EstimatedCost { get; set; }
     }
 }
