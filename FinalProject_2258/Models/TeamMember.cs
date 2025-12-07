@@ -6,7 +6,7 @@ namespace FinalProject_2258.Data
     {
         [Key]
         public int Id { get; set; }
-        
+
         [Required]
         [MaxLength(100)]
         public string Name { get; set; } = string.Empty;
@@ -18,7 +18,7 @@ namespace FinalProject_2258.Data
 
         [MaxLength(50)]
         public string YearInProgram { get; set; } = string.Empty;
-        
+
         [MaxLength(100)]
         public string? Role { get; set; }
     }
